@@ -10,7 +10,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import static com.baeldung.lsd.persistence.model.Predicates.TaskPredicates.tasksSortedByDueDateDesc;
+import static com.baeldung.lsd.persistence.model.Predicates.TaskPredicates.tasksByProjectCode;
 
 @SpringBootApplication
 public class QuerydslApp implements ApplicationRunner {
@@ -26,10 +26,10 @@ public class QuerydslApp implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Iterable<Task> tasksDueDateDesc = taskRepository.findAll(tasksSortedByDueDateDesc());
+        Iterable<Task> taskWithProjectCode = taskRepository.findAll(tasksByProjectCode("P2"));;
 
-        LOG.info("All Tasks Sorted By Due Date Desc :");
-        tasksDueDateDesc.forEach(t -> LOG.info(t.toString()));
+        LOG.info("All Tasks with Project Code :");
+        taskWithProjectCode.forEach(t -> LOG.info(t.toString()));
     }
 
 }

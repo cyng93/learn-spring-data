@@ -22,4 +22,8 @@ public class TaskPredicates {
     public static OrderSpecifier<LocalDate> tasksSortedByDueDateDesc() {
         return QTask.task.dueDate.desc();
     }
+
+    public static BooleanExpression tasksByProjectCode(String projectCode) {
+        return QTask.task.project.code.eq(projectCode);
+    }
 }
